@@ -236,17 +236,17 @@
             FrameworkElementEx.DefaultStyleKeyProperty.OverrideMetadata(OwnerType, new FrameworkPropertyMetadata(OwnerType));
         }
 
-        private static PropertyChangedCallback DownCast(CastedPropertyChangedCallback callback)
+        public static PropertyChangedCallback DownCast(CastedPropertyChangedCallback callback)
         {
             return (callback != null) ? new PropertyChangedCallback((d, e) => callback((TOwner)d, e)) : null;
         }
 
-        private static CoerceValueCallback DownCast<T>(CastedCoerceValueCallback<T> callback)
+        public static CoerceValueCallback DownCast<T>(CastedCoerceValueCallback<T> callback)
         {
             return (callback != null) ? new CoerceValueCallback((d, baseValue) => callback((TOwner)d, (T)baseValue)) : null;
         }
 
-        internal static ValidateValueCallback DownCast<T>(CastedValidateValueCallback<T> callback)
+        public static ValidateValueCallback DownCast<T>(CastedValidateValueCallback<T> callback)
         {
             return (callback != null) ? new ValidateValueCallback(value => callback((T)value)) : null;
         }

@@ -32,6 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Wpf\AttachedPropertyUtilities.cs" />
+    <Compile Include="Wpf\BindableEnum.cs" />
+    <Compile Include="Wpf\Controls\DataTemplateSelectorDictionary.cs" />
+    <Compile Include="Wpf\Controls\EnumComboBox.cs" />
     <Compile Include="Wpf\MultiValueConverterExtension.cs" />
     <Compile Include="ComponentModel\ObservableObject.cs" />
     <Compile Include="Wpf\FrameworkElementEx.cs" />
