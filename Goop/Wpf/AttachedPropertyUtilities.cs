@@ -144,7 +144,7 @@
                     validateValueCallback);
             }
 
-            public DependencyPropertyKey RegisterReadOnly<T>(Getter<T> getter, Setter<T> setter, PropertyMetadata defaultMetadata)
+            public DependencyPropertyKey RegisterReadOnly<T>(Getter<T> getter, Setter<T> setter, PropertyMetadata defaultMetadata = null)
             {
                 return DependencyProperty.RegisterAttachedReadOnly(GetPropertyName(getter, setter), typeof(T), this.OwnerType, defaultMetadata);
             }

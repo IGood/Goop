@@ -77,7 +77,7 @@
                 validateValueCallback);
         }
 
-        public static DependencyPropertyKey RegisterReadOnly<T>(Expression<Func<TOwner, T>> propertyLamba, PropertyMetadata typeMetadata)
+        public static DependencyPropertyKey RegisterReadOnly<T>(Expression<Func<TOwner, T>> propertyLamba, PropertyMetadata typeMetadata = null)
         {
             return DependencyProperty.RegisterReadOnly(GetPropertyName(propertyLamba), typeof(T), OwnerType, typeMetadata);
         }

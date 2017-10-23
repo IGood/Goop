@@ -27,6 +27,20 @@
             return true;
         }
 
+        protected bool SetField<T>(T currentValue, T value, Action<T> setter, [CallerMemberName] string propertyName = "")
+        {
+            if (Equals(currentValue, value))
+            {
+                return false;
+            }
+
+            setter(value);
+
+            this.OnPropertyChanged(propertyName);
+
+            return true;
+        }
+
         /// <summary>
         /// Returns an instance of PropertyChangedEventArgs for the specified property name.
         /// </summary>

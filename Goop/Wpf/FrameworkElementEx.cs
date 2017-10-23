@@ -3,20 +3,19 @@
     using System;
     using System.Reflection;
     using System.Windows;
-    using GetTemplateChildSig = System.Func<System.Windows.FrameworkElement, string, System.Windows.DependencyObject>;
+    using GetTemplateChildFunc = System.Func<System.Windows.FrameworkElement, string, System.Windows.DependencyObject>;
 
     public static class FrameworkElementEx
     {
-        private static readonly GetTemplateChildSig GetTemplateChildDelegate;
+        private static readonly GetTemplateChildFunc GetTemplateChildDelegate;
 
         internal static readonly DependencyProperty DefaultStyleKeyProperty;
 
         static FrameworkElementEx()
         {
             Type frameworkElementType = typeof(FrameworkElement);
-
             MethodInfo m = frameworkElementType.GetMethod("GetTemplateChild", BindingFlags.Instance | BindingFlags.NonPublic);
-            GetTemplateChildDelegate = (GetTemplateChildSig)m.CreateDelegate(typeof(GetTemplateChildSig));
+            GetTemplateChildDelegate = (GetTemplateChildFunc)m.CreateDelegate(typeof(GetTemplateChildFunc));
 
             FieldInfo f = frameworkElementType.GetField("DefaultStyleKeyProperty", BindingFlags.Static | BindingFlags.NonPublic);
             DefaultStyleKeyProperty = (DependencyProperty)f.GetValue(null);
