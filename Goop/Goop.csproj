@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ComponentModel\ObservableEx.cs" />
     <Compile Include="EnumEx.cs" />
     <Compile Include="ComponentModel\EnumMetadataAttribute.cs" />
     <Compile Include="Linq\EnumerableEx.cs" />
@@ -51,13 +52,15 @@
       <DependentUpon>SelectColumnsPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wpf\EnumToMetadata.cs" />
+    <Compile Include="Wpf\ColorExtension.cs" />
+    <Compile Include="Wpf\MultiValueConverter.cs" />
     <Compile Include="Wpf\VisualEx.cs" />
-    <Compile Include="Wpf\MultiValueConverterExtension.cs" />
+    <Compile Include="Wpf\StatelessMultiValueConverter.cs" />
     <Compile Include="ComponentModel\ObservableObject.cs" />
     <Compile Include="Wpf\FrameworkElementEx.cs" />
     <Compile Include="Wpf\BoolBox.cs" />
     <Compile Include="Wpf\ValueConverter.cs" />
-    <Compile Include="Wpf\ValueConverterExtension.cs" />
+    <Compile Include="Wpf\StatelessValueConverter.cs" />
     <Compile Include="Wpf\RoutedCommandUtilities.cs" />
     <Compile Include="Math\MathEx.cs" />
     <Compile Include="Wpf\RoutedEventUtilities.cs" />

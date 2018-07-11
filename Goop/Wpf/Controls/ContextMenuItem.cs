@@ -9,7 +9,7 @@
         public ContextMenuItem()
         {
             this.SetBinding(
-                CommandParameterProperty,
+                CommandTargetProperty,
                 new Binding
                 {
                     RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(ContextMenu), 0),

@@ -8,7 +8,7 @@
     [MarkupExtensionReturnType(typeof(IValueConverter))]
     public abstract class ValueConverter : MarkupExtension, IValueConverter
     {
-        public override object ProvideValue(IServiceProvider serviceProvider) => this;
+        public sealed override object ProvideValue(IServiceProvider serviceProvider) => this;
         public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();
         public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();
     }

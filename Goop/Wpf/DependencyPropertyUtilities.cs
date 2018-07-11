@@ -190,6 +190,11 @@
             dp.OverrideMetadata(OwnerType, typeMetadata);
         }
 
+        public static void OverrideMetadata<T>(DependencyPropertyKey dpk, PropertyMetadata typeMetadata) where T : PropertyMetadata
+        {
+            dpk.DependencyProperty.OverrideMetadata(OwnerType, typeMetadata, dpk);
+        }
+
         public static void OverrideMetadata<T>(
             DependencyProperty dp,
             T defaultValue,
@@ -233,7 +238,7 @@
 
         public static void OverrideDefaultStyleKey()
         {
-            FrameworkElementEx.DefaultStyleKeyProperty.OverrideMetadata(OwnerType, new FrameworkPropertyMetadata(OwnerType));
+            OverrideMetadata(FrameworkElementEx.DefaultStyleKeyProperty, new FrameworkPropertyMetadata(OwnerType));
         }
 
         public static PropertyChangedCallback DownCast(CastedPropertyChangedCallback callback)
