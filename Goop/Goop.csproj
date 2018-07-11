@@ -34,6 +34,7 @@
     <Compile Include="ComponentModel\ObservableEx.cs" />
     <Compile Include="EnumEx.cs" />
     <Compile Include="ComponentModel\EnumMetadataAttribute.cs" />
+    <Compile Include="DictionaryEx.cs" />
     <Compile Include="Linq\EnumerableEx.cs" />
     <Compile Include="ObjectModel\CollectionDebugView.cs" />
     <Compile Include="ObjectModel\ObservableCollectionBase.cs" />
