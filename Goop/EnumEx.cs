@@ -150,9 +150,8 @@
 
         private static bool Invoke<TEnum>(Delegate tryParse, string value, bool ignoreCase, out object result)
         {
-            TEnum parseResult;
             var tryParseT = (TryParseFunc<TEnum>)tryParse;
-            bool success = tryParseT(value, ignoreCase, out parseResult);
+            bool success = tryParseT(value, ignoreCase, out TEnum parseResult);
             result = parseResult;
             return success;
         }

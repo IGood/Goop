@@ -10,7 +10,7 @@
         static void Main(string[] args)
         {
             //*
-            Benchmark<NumbersUtilities>();
+            Benchmark<InterfaceImplementations>();
             /*/
             var x = new EnumParsing();
             x.UsingMethodInfo();

@@ -30,10 +30,20 @@
 
         public override bool Equals(object value)
         {
-            if (object.ReferenceEquals(value, null)) return false;
-            if (object.ReferenceEquals(value, this)) return true;
-            var other = value as EnumMetadataAttribute;
-            return other != null && this.Key == other.Key && this.Metadata == other.Metadata;
+            if (object.ReferenceEquals(value, null))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(value, this))
+            {
+                return true;
+            }
+
+            return
+                value is EnumMetadataAttribute other &&
+                this.Key == other.Key &&
+                this.Metadata == other.Metadata;
         }
 
         public override int GetHashCode() => (this.Key?.GetHashCode() ?? 0) ^ (this.Metadata?.GetHashCode() ?? 0);

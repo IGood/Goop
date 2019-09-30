@@ -40,13 +40,13 @@
             }
             else
             {
-                RoutedEventHandler loaded = null;
-                loaded = delegate
+                element.Loaded += _OnLoaded;
+
+                void _OnLoaded(object sender, RoutedEventArgs e)
                 {
-                    element.Loaded -= loaded;
+                    element.Loaded -= _OnLoaded;
                     action();
-                };
-                element.Loaded += loaded;
+                }
             }
         }
     }

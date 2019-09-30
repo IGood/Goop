@@ -31,15 +31,13 @@
         {
             get
             {
-                T enumValue;
                 return
-                    Enum.TryParse(stringValue, true, out enumValue) &&
+                    Enum.TryParse(stringValue, true, out T enumValue) &&
                     object.Equals(this.Value, enumValue);
             }
             set
             {
-                T enumValue;
-                if (value && Enum.TryParse(stringValue, true, out enumValue))
+                if (value && Enum.TryParse(stringValue, true, out T enumValue))
                 {
                     this.Value = enumValue;
                 }

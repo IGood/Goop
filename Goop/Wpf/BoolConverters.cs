@@ -21,7 +21,7 @@
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Equals(this.IfTrue);
+            return Equals(value, this.IfTrue);
         }
     }
 

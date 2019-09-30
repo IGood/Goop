@@ -20,8 +20,7 @@
         [DataRow("derp", CaseSensitive, Failure, default(Chipmonks))]
         public void TryParse(string value, bool ignoreCase, bool expectedSuccess, Chipmonks expectedResult)
         {
-            object result;
-            bool success = EnumEx.TryParse(typeof(Chipmonks), value, ignoreCase, out result);
+            bool success = EnumEx.TryParse(typeof(Chipmonks), value, ignoreCase, out object result);
             Assert.AreEqual(expectedSuccess, success);
             Assert.AreEqual(expectedResult, result);
         }
@@ -35,8 +34,7 @@
         [DataRow("derp", CaseSensitive, Failure, default(Chipmonks))]
         public void TryParseT(string value, bool ignoreCase, bool expectedSuccess, Chipmonks expectedResult)
         {
-            Chipmonks result;
-            bool success = EnumEx.TryParse(value, ignoreCase, out result);
+            bool success = EnumEx.TryParse(value, ignoreCase, out Chipmonks result);
             Assert.AreEqual(expectedSuccess, success);
             Assert.AreEqual(expectedResult, result);
         }
