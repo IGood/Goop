@@ -1,102 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85C17AD3-356F-412F-8AF2-1320F0A990FA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Goop</RootNamespace>
-    <AssemblyName>Goop</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="ComponentModel\ObservableEx.cs" />
-    <Compile Include="EnumEx.cs" />
-    <Compile Include="ComponentModel\EnumMetadataAttribute.cs" />
-    <Compile Include="DictionaryEx.cs" />
-    <Compile Include="Linq\EnumerableEx.cs" />
-    <Compile Include="ObjectModel\CollectionDebugView.cs" />
-    <Compile Include="ObjectModel\ObservableCollectionBase.cs" />
-    <Compile Include="ObjectModel\ObservableCollectionHelpers.cs" />
-    <Compile Include="ObjectModel\ObservableHashSet.cs" />
-    <Compile Include="ObjectModel\ObservableSortedSet.cs" />
-    <Compile Include="ObjectModel\ReadOnlyObservableCollection.cs" />
-    <Compile Include="Wpf\AttachedPropertyUtilities.cs" />
-    <Compile Include="Wpf\BindableEnum.cs" />
-    <Compile Include="Wpf\BoolConverters.cs" />
-    <Compile Include="Wpf\SolidColorBrushExtension.cs" />
-    <Compile Include="Wpf\Controls\ContextMenuItem.cs" />
-    <Compile Include="Wpf\Controls\DataTemplateSelectorDictionary.cs" />
-    <Compile Include="Wpf\Controls\EnumComboBox.cs" />
-    <Compile Include="Wpf\Controls\GridViewHelper.cs" />
-    <Compile Include="Wpf\Controls\SelectColumnsPopup.xaml.cs">
-      <DependentUpon>SelectColumnsPopup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Wpf\EnumToMetadata.cs" />
-    <Compile Include="Wpf\ColorExtension.cs" />
-    <Compile Include="Wpf\MultiValueConverter.cs" />
-    <Compile Include="Wpf\VisualEx.cs" />
-    <Compile Include="Wpf\StatelessMultiValueConverter.cs" />
-    <Compile Include="ComponentModel\ObservableObject.cs" />
-    <Compile Include="Wpf\FrameworkElementEx.cs" />
-    <Compile Include="Wpf\BoolBox.cs" />
-    <Compile Include="Wpf\ValueConverter.cs" />
-    <Compile Include="Wpf\StatelessValueConverter.cs" />
-    <Compile Include="Wpf\RoutedCommandUtilities.cs" />
-    <Compile Include="Math\MathEx.cs" />
-    <Compile Include="Wpf\RoutedEventUtilities.cs" />
-    <Compile Include="Wpf\DependencyPropertyUtilities.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Xml\Serialization\XmlSerializerEx.cs" />
+    <PackageReference Include="morelinq" Version="3.2.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MoreLinq, Version=3.1.0.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
-      <HintPath>..\packages\morelinq.3.1.0\lib\net451\MoreLinq.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Wpf\Controls\SelectColumnsPopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

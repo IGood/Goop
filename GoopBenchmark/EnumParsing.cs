@@ -1,11 +1,10 @@
 ﻿namespace GoopBenchmark
 {
+    using BenchmarkDotNet.Attributes;
     using System;
     using System.Collections.Concurrent;
-    using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-    using BenchmarkDotNet.Attributes;
     using InvokerDelegatePair = System.Tuple<EnumEx.InvokerFunc, System.Delegate>;
 
     public static class EnumEx
@@ -23,9 +22,13 @@
 
         static EnumEx()
         {
-            EnumTryParseOpenMethod = typeof(Enum)
-                .GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .First(m => m.Name == nameof(Enum.TryParse) && m.GetParameters().Length == 3);
+            EnumTryParseOpenMethod = typeof(Enum).GetMethod(
+                nameof(Enum.TryParse),
+                1,
+                BindingFlags.Public | BindingFlags.Static,
+                null,
+                new[] { typeof(string), typeof(bool), Type.MakeGenericMethodParameter(0).MakeByRefType() },
+                null);
 
             InvokeOpenMethod = typeof(EnumEx).GetMethod(nameof(EnumEx.Invoke), BindingFlags.NonPublic | BindingFlags.Static);
         }

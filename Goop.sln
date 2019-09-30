@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goop", "Goop\Goop.csproj", "{85C17AD3-356F-412F-8AF2-1320F0A990FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goop", "Goop\Goop.csproj", "{85C17AD3-356F-412F-8AF2-1320F0A990FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoopTest", "GoopTest\GoopTest.csproj", "{B705A1BA-1D50-40FE-B95C-D3ADDC8EA515}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoopTest", "GoopTest\GoopTest.csproj", "{B705A1BA-1D50-40FE-B95C-D3ADDC8EA515}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoopBenchmark", "GoopBenchmark\GoopBenchmark.csproj", "{9574A9CE-890D-4C13-B538-E5E594436959}"
 EndProject
