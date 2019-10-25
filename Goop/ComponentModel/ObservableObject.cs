@@ -8,7 +8,7 @@
     public abstract class ObservableObject : INotifyPropertyChanged
     {
         [field: NonSerialized]
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = "")
         {

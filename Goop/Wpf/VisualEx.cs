@@ -5,7 +5,7 @@
 
     public static class VisualEx
     {
-        public static T GetParent<T>(this DependencyObject reference) where T : Visual
+        public static T? GetParent<T>(this DependencyObject reference) where T : Visual
         {
             while (reference != null)
             {
