@@ -1,17 +1,18 @@
-﻿namespace Goop.Linq
-{
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
+namespace Goop.Linq
+{
 	public static class EnumerableEx
 	{
-		public static IEnumerable<T> Once<T>(this T value)
+		public static IEnumerable<T> Once<T> (this T value)
 		{
 			yield return value;
 		}
 
-		public static int IndexOf<T>(this IEnumerable<T> source, T value, IEqualityComparer<T>? comparer = null)
+		public static int IndexOf<T> (this IEnumerable<T> source, T value, IEqualityComparer<T>? comparer = null)
 		{
 			if (comparer == null)
 			{
@@ -32,7 +33,7 @@
 			return -1;
 		}
 
-		public static int IndexOf<T>(this IEnumerable<T> source, T value, IComparer<T>? comparer)
+		public static int IndexOf<T> (this IEnumerable<T> source, T value, IComparer<T>? comparer)
 		{
 			if (comparer == null)
 			{
@@ -53,7 +54,7 @@
 			return -1;
 		}
 
-		public static int FindIndex<T>(this IEnumerable<T> source, Predicate<T> match)
+		public static int FindIndex<T> (this IEnumerable<T> source, Predicate<T> match)
 		{
 			int i = 0;
 			foreach (var item in source)
@@ -69,7 +70,7 @@
 			return -1;
 		}
 
-		public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action)
+		public static void ForEach<T> (this IEnumerable<T> source, Action<T, int> action)
 		{
 			int i = -1;
 			foreach (var item in source)
@@ -78,7 +79,7 @@
 			}
 		}
 
-		public static void ForEach<T, TResult>(this IEnumerable<T> source, Action<T> action)
+		public static void ForEach<T> (this IEnumerable<T> source, Action<T> action)
 		{
 			foreach (var item in source)
 			{
@@ -86,7 +87,7 @@
 			}
 		}
 
-		public static void ForEach<T, TResult>(this IEnumerable<T> source, Func<T, int, TResult> function)
+		public static void ForEach<T, TResult> (this IEnumerable<T> source, Func<T, int, TResult> function)
 		{
 			int i = -1;
 			foreach (var item in source)
@@ -95,7 +96,7 @@
 			}
 		}
 
-		public static void ForEach<T, TResult>(this IEnumerable<T> source, Func<T, TResult> function)
+		public static void ForEach<T, TResult> (this IEnumerable<T> source, Func<T, TResult> function)
 		{
 			foreach (var item in source)
 			{
@@ -103,12 +104,21 @@
 			}
 		}
 
-		public static IEnumerable<string?> DistinctI(this IEnumerable<string?> source)
+		public static void ForEachR<T> (this IList<T> source, Action<T> action)
+		{
+			int i = source.Count;
+			while (--i >= 0)
+			{
+				action(source[i]);
+			}
+		}
+
+		public static IEnumerable<string?> DistinctI (this IEnumerable<string?> source)
 		{
 			return source.Distinct(StringComparer.OrdinalIgnoreCase);
 		}
 
-		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer = null)
+		public static IEnumerable<TSource> DistinctBy<TSource, TKey> (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer = null)
 			where TKey : notnull
 		{
 			var keys = new HashSet<TKey>(comparer);
@@ -122,7 +132,7 @@
 			}
 		}
 
-		public static IEnumerable<TSource> DistinctByI<TSource>(this IEnumerable<TSource> source, Func<TSource, string> keySelector)
+		public static IEnumerable<TSource> DistinctByI<TSource> (this IEnumerable<TSource> source, Func<TSource, string> keySelector)
 		{
 			var keys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
@@ -135,7 +145,7 @@
 			}
 		}
 
-		public static TResult[] ToArray<TSource, TResult>(this ICollection<TSource> source, Converter<TSource, TResult> selector)
+		public static TResult[] ToArray<TSource, TResult> (this ICollection<TSource> source, Converter<TSource, TResult> selector)
 		{
 			var result = new TResult[source.Count];
 
@@ -148,27 +158,32 @@
 			return result;
 		}
 
-		public static Dictionary<string, T> ToDictionaryI<T>(this IEnumerable<T> source, Func<T, string> keySelector)
+		public static Dictionary<string, T> ToDictionaryI<T> (this IEnumerable<T> source, Func<T, string> keySelector)
 		{
 			return source.ToDictionary(keySelector, StringComparer.OrdinalIgnoreCase);
 		}
 
-		public static Dictionary<string, TElement> ToDictionaryI<TSource, TElement>(this IEnumerable<TSource> source, Func<TSource, string> keySelector, Func<TSource, TElement> elementSelector)
+		public static Dictionary<string, TElement> ToDictionaryI<TSource, TElement> (this IEnumerable<TSource> source, Func<TSource, string> keySelector, Func<TSource, TElement> elementSelector)
 		{
 			return source.ToDictionary(keySelector, elementSelector, StringComparer.OrdinalIgnoreCase);
 		}
 
-		public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source, IEqualityComparer<T>? comparer = null)
+		public static HashSet<T> ToHashSet<T> (this IEnumerable<T> source, IEqualityComparer<T>? comparer = null)
 		{
 			return new HashSet<T>(source, comparer);
 		}
 
-		public static HashSet<string> ToHashSetI(this IEnumerable<string> source)
+		public static HashSet<string> ToHashSetI (this IEnumerable<string> source)
 		{
 			return new HashSet<string>(source, StringComparer.OrdinalIgnoreCase);
 		}
 
-		public static int BinarySearch<T>(this IList<T> list, T value, IComparer<T>? comparer = null)
+		public static ObservableCollection<T> ToObservableCollection<T> (this IEnumerable<T> source)
+		{
+			return new ObservableCollection<T>(source);
+		}
+
+		public static int BinarySearch<T> (this IList<T> list, T value, IComparer<T>? comparer = null)
 		{
 			if (comparer == null)
 			{
