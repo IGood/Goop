@@ -1,11 +1,11 @@
-﻿namespace Goop
-{
-	using System;
-	using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace Goop
+{
 	public static class DictionaryEx
 	{
-		public static bool TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Action<TValue> found) where TKey : notnull
+		public static bool TryGetValue<TKey, TValue> (this IDictionary<TKey, TValue> dictionary, TKey key, Action<TValue> found) where TKey : notnull
 		{
 			if (dictionary.TryGetValue(key, out TValue value))
 			{
@@ -16,7 +16,7 @@
 			return false;
 		}
 
-		public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+		public static TValue GetOrAdd<TKey, TValue> (this IDictionary<TKey, TValue> dictionary, TKey key)
 			where TKey : notnull
 			where TValue : new()
 		{
@@ -29,7 +29,7 @@
 			return value;
 		}
 
-		public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value) where TKey : notnull
+		public static TValue GetOrAdd<TKey, TValue> (this IDictionary<TKey, TValue> dictionary, TKey key, TValue value) where TKey : notnull
 		{
 			if (dictionary.TryGetValue(key, out TValue found))
 			{
@@ -41,7 +41,7 @@
 			return value;
 		}
 
-		public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> factory) where TKey : notnull
+		public static TValue GetOrAdd<TKey, TValue> (this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> factory) where TKey : notnull
 		{
 			if (dictionary.TryGetValue(key, out TValue value) == false)
 			{

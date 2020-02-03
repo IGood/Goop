@@ -1,12 +1,13 @@
-﻿namespace Goop
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+namespace Goop
 {
-	using System;
-	using System.Collections.Concurrent;
-	using System.Collections.Generic;
-	using System.Diagnostics.CodeAnalysis;
-	using System.Linq;
-	using System.Reflection;
-	using System.Runtime.CompilerServices;
 	using InvokerDelegatePair = System.Tuple<EnumEx.InvokeFunc, System.Delegate>;
 
 	public static class EnumEx
@@ -21,12 +22,12 @@
 		/// </summary>
 		private static readonly MethodInfo InvokeOpenMethod;
 
-		private delegate bool TryParseFunc<T>([NotNullWhen(true)] string? value, bool ignoreCase, out T result) where T : struct, Enum;
-		public delegate bool InvokeFunc(Delegate tryParseFunc, [NotNullWhen(true)] string? value, bool ignoreCase, out object result);
+		private delegate bool TryParseFunc<T> ([NotNullWhen(true)] string? value, bool ignoreCase, out T result) where T : struct, Enum;
+		public delegate bool InvokeFunc (Delegate tryParseFunc, [NotNullWhen(true)] string? value, bool ignoreCase, out object result);
 
 		private static readonly ConcurrentDictionary<Type, InvokerDelegatePair> TryParsePairs = new ConcurrentDictionary<Type, InvokerDelegatePair>();
 
-		static EnumEx()
+		static EnumEx ()
 		{
 			EnumTryParseOpenMethod = typeof(Enum).GetMethod(
 				nameof(Enum.TryParse),
@@ -56,7 +57,7 @@
 		/// It is recommended that you use <see cref="Enum.TryParse{TEnum}(string, bool, out TEnum)"/>
 		/// instead of this method when possible.
 		/// </remarks>
-		public static bool TryParse(Type enumType, [NotNullWhen(true)] string? value, bool ignoreCase, out object result)
+		public static bool TryParse (Type enumType, [NotNullWhen(true)] string? value, bool ignoreCase, out object result)
 		{
 			VerifyEnumType(enumType);
 			InvokerDelegatePair pair = GetTryParsePair(enumType);
@@ -83,7 +84,7 @@
 		/// It is recommended that you use <see cref="Enum.TryParse{TEnum}(string, bool, out TEnum)"/>
 		/// instead of this method when possible.
 		/// </remarks>
-		public static bool TryParse<TEnum>([NotNullWhen(true)] string? value, bool ignoreCase, out TEnum result) where TEnum : struct, Enum
+		public static bool TryParse<TEnum> ([NotNullWhen(true)] string? value, bool ignoreCase, out TEnum result) where TEnum : struct, Enum
 		{
 			var type = typeof(TEnum);
 			var tryParse = (TryParseFunc<TEnum>)GetTryParsePair(type).Item2;
@@ -97,7 +98,7 @@
 		/// <param name="enumValue">The initial value of the enum.</param>
 		/// <param name="skip">The enum values to skip over when cycling.</param>
 		/// <returns>The next value of the enum.</returns>
-		public static TEnum CycleNextEnumValue<TEnum>(this TEnum enumValue, params TEnum[] skip) where TEnum : struct, Enum
+		public static TEnum CycleNextEnumValue<TEnum> (this TEnum enumValue, params TEnum[] skip) where TEnum : struct, Enum
 		{
 			var values = (TEnum[])Enum.GetValues(typeof(TEnum));
 
@@ -112,12 +113,12 @@
 			return values[index];
 		}
 
-		public static IEnumerable<T> GetAttributes<T>(this Enum value) where T : Attribute
+		public static IEnumerable<T> GetAttributes<T> (this Enum value) where T : Attribute
 		{
 			return value.GetType().GetField(value.ToString())!.GetCustomAttributes<T>(false);
 		}
 
-		public static T? GetAttribute<T>(this Enum value) where T : Attribute
+		public static T? GetAttribute<T> (this Enum value) where T : Attribute
 		{
 			return value.GetAttributes<T>().FirstOrDefault();
 		}
@@ -128,7 +129,7 @@
 		/// <param name="type">The type.</param>
 		/// <param name="callerName">Name of the caller.</param>
 		/// <exception cref="System.NotSupportedException">requires an enumerable type</exception>
-		private static void VerifyEnumType(Type type, [CallerMemberName] string callerName = "")
+		private static void VerifyEnumType (Type type, [CallerMemberName] string callerName = "")
 		{
 			if (type.IsEnum == false)
 			{
@@ -136,7 +137,7 @@
 			}
 		}
 
-		private static InvokerDelegatePair GetTryParsePair(Type enumType)
+		private static InvokerDelegatePair GetTryParsePair (Type enumType)
 		{
 			return TryParsePairs.GetOrAdd(
 				enumType,
@@ -151,7 +152,7 @@
 				});
 		}
 
-		private static bool Invoke<TEnum>(Delegate tryParse, [NotNullWhen(true)] string? value, bool ignoreCase, out object result) where TEnum : struct, Enum
+		private static bool Invoke<TEnum> (Delegate tryParse, [NotNullWhen(true)] string? value, bool ignoreCase, out object result) where TEnum : struct, Enum
 		{
 			var tryParseT = (TryParseFunc<TEnum>)tryParse;
 			bool success = tryParseT(value, ignoreCase, out TEnum parseResult);

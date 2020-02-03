@@ -1,8 +1,8 @@
-﻿namespace GoopBenchmark
-{
-    using System;
-    using BenchmarkDotNet.Running;
+﻿using System;
+using BenchmarkDotNet.Running;
 
+namespace GoopBenchmark
+{
     class Program
     {
         public static int Indent { get; set; }
@@ -10,7 +10,8 @@
         static void Main(string[] args)
         {
             //*
-            Benchmark<EnumParsing>();
+            //Benchmark<EnumParsing>();
+            Benchmark<StringBuilderFormatting>();
             /*/
             var x = new EnumParsing();
             x.UsingMethodInfo();
