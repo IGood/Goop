@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:goop="clr-namespace:Goop.Wpf.IconGlyph">
+
+    <DataTemplate DataType="{x:Type goop:IconGlyph}">
+        <goop:IconGlyphTextBlock IconGlyph="{Binding Mode=OneTime}"/>
+    </DataTemplate>
+
+</ResourceDictionary>

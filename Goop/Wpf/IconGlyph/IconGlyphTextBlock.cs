@@ -10,7 +10,7 @@ namespace Goop.Wpf.IconGlyph
 	[ContentProperty(nameof(IconGlyph))]
 	public class IconGlyphTextBlock : TextBlock
 	{
-		static IconGlyphTextBlock()
+		static IconGlyphTextBlock ()
 		{
 			DP.OverrideMetadata(
 				TextBlock.FontFamilyProperty,
@@ -27,7 +27,7 @@ namespace Goop.Wpf.IconGlyph
 			set => this.SetValue(IconGlyphProperty, value);
 		}
 
-		private static void IconGlyphPropertyChanged(IconGlyphTextBlock self, DependencyPropertyChangedEventArgs e)
+		private static void IconGlyphPropertyChanged (IconGlyphTextBlock self, DependencyPropertyChangedEventArgs e)
 		{
 			self.Text = ((IconGlyph)e.NewValue).ToUnicode();
 		}
