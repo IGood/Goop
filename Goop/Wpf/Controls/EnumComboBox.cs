@@ -8,10 +8,10 @@
 
 	public class EnumComboBox : ComboBox
 	{
-		static EnumComboBox()
+		static EnumComboBox ()
 		{
 			DP.OverrideMetadata(SelectedValueProperty, new FrameworkPropertyMetadata(DP.DownCast(OnSelectedValueChanged)));
-			DP.OverrideMetadata(ItemsSourceProperty, new FrameworkPropertyMetadata(null, DP.DownCast<IEnumerable>(CoerceItemsSource)));
+			DP.OverrideMetadata(ItemsSourceProperty, new FrameworkPropertyMetadata(null, DP.DownCast<IEnumerable?>(CoerceItemsSource)));
 		}
 
 		public Type? EnumType
@@ -21,22 +21,22 @@
 		}
 		public static readonly DependencyProperty EnumTypeProperty = DP.Register(_ => _.EnumType, OnEnumTypeChanged, CoerceEnumType);
 
-		private static void OnEnumTypeChanged(EnumComboBox self, DependencyPropertyChangedEventArgs e)
+		private static void OnEnumTypeChanged (EnumComboBox self, DependencyPropertyChangedEventArgs e)
 		{
 			self.CoerceValue(ItemsSourceProperty);
 		}
 
-		private static Type? CoerceEnumType(EnumComboBox self, Type? baseValue)
+		private static Type? CoerceEnumType (EnumComboBox self, Type? baseValue)
 		{
 			return baseValue ?? self.SelectedValue?.GetType();
 		}
 
-		private static void OnSelectedValueChanged(EnumComboBox self, DependencyPropertyChangedEventArgs e)
+		private static void OnSelectedValueChanged (EnumComboBox self, DependencyPropertyChangedEventArgs e)
 		{
 			self.CoerceValue(EnumTypeProperty);
 		}
 
-		private static IEnumerable? CoerceItemsSource(EnumComboBox self, IEnumerable? baseValue)
+		private static IEnumerable? CoerceItemsSource (EnumComboBox self, IEnumerable? baseValue)
 		{
 			if (baseValue == null)
 			{
