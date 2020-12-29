@@ -8,9 +8,9 @@ namespace Goop.Wpf.IconGlyph
 	using DP = DependencyPropertyUtilities<IconGlyphTextBlock>;
 
 	[ContentProperty(nameof(IconGlyph))]
-	public class IconGlyphTextBlock : TextBlock
+	public partial class IconGlyphTextBlock : TextBlock
 	{
-		static IconGlyphTextBlock ()
+		static IconGlyphTextBlock()
 		{
 			DP.OverrideMetadata(
 				TextBlock.FontFamilyProperty,
@@ -19,15 +19,9 @@ namespace Goop.Wpf.IconGlyph
 			DP.OverrideMetadata(TextBlock.FontSizeProperty, new FrameworkPropertyMetadata(16.0));
 		}
 
-		public static readonly DependencyProperty IconGlyphProperty = DP.Register(_ => _.IconGlyph, IconGlyph.Unknown, IconGlyphPropertyChanged);
+		public static readonly DependencyProperty IconGlyphProperty = Gen.IconGlyph(IconGlyph.Unknown);
 
-		public IconGlyph IconGlyph
-		{
-			get => (IconGlyph)this.GetValue(IconGlyphProperty);
-			set => this.SetValue(IconGlyphProperty, value);
-		}
-
-		private static void IconGlyphPropertyChanged (IconGlyphTextBlock self, DependencyPropertyChangedEventArgs e)
+		private static void IconGlyphPropertyChanged(IconGlyphTextBlock self, DependencyPropertyChangedEventArgs e)
 		{
 			self.Text = ((IconGlyph)e.NewValue).ToUnicode();
 		}

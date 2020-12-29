@@ -15,8 +15,6 @@
 
 	public sealed partial class GridViewHelper
 	{
-		private static readonly AttachedPropertyUtilities AP = new AttachedPropertyUtilities(typeof(GridViewHelper));
-
 		public static readonly RoutedUICommand HideColumn = Cmd.CreateUI("Hi_de Column", nameof(HideColumn));
 		public static readonly RoutedUICommand SelectColumns = Cmd.CreateUI("_Select Columns", nameof(SelectColumns));
 
