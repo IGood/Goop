@@ -9,6 +9,11 @@ namespace Goop
 			return string.Compare(value, other, StringComparison.OrdinalIgnoreCase);
 		}
 
+		public static bool ContainsI (this string value, string other)
+		{
+			return value.Contains(other, StringComparison.OrdinalIgnoreCase);
+		}
+
 		public static bool EqualsI (this string value, string? other)
 		{
 			return value.Equals(other, StringComparison.OrdinalIgnoreCase);
