@@ -1,0 +1,63 @@
+﻿<Window x:Class="tinker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:goop="clr-namespace:Goop.Wpf.IconGlyph;assembly=Goop"
+        mc:Ignorable="d"
+        FontFamily="Courier New"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Background="AliceBlue" TextElement.FontSize="30" Orientation="Horizontal">
+            <Grid>
+                <goop:IconGlyphTextBlock IconGlyph="StatusCircleOuter" Foreground="White"/>
+                <goop:IconGlyphTextBlock IconGlyph="StatusCircleInner" Foreground="Red"/>
+                <goop:IconGlyphTextBlock IconGlyph="StatusCircleErrorX" Foreground="White"/>
+            </Grid>
+            <Grid>
+                <goop:IconGlyphTextBlock IconGlyph="StatusTriangleOuter" Foreground="White"/>
+                <goop:IconGlyphTextBlock IconGlyph="StatusTriangleInner" Foreground="Yellow"/>
+                <goop:IconGlyphTextBlock IconGlyph="StatusTriangleExclamation" Foreground="Black"/>
+            </Grid>
+            <Grid>
+                <goop:IconGlyphTextBlock IconGlyph="StatusCircleOuter" Foreground="White"/>
+                <goop:IconGlyphTextBlock IconGlyph="StatusCircleInner" Foreground="DodgerBlue"/>
+                <goop:IconGlyphTextBlock IconGlyph="StatusCircleInfo" Foreground="White"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Background="AliceBlue" TextElement.FontSize="30" Orientation="Horizontal" TextElement.FontFamily="Segoe UI Symbol">
+            <Grid>
+                <TextBlock Text="&#xE0D4;" Foreground="Red"/>
+                <TextBlock Text="&#xE0BA;" Foreground="DodgerBlue"/>
+                <TextBlock Text="&#xE0C4;" Foreground="White"/>
+            </Grid>
+            <Grid>
+                <TextBlock Text="&#xE0D4;" Foreground="Red"/>
+                <TextBlock Text="&#xE0C4;" Foreground="DodgerBlue"/>
+                <TextBlock Text="&#xE0C4;" Foreground="White"/>
+            </Grid>
+            <Grid>
+                <TextBlock Text="&#xE0A8;" Foreground="Red"/>
+                <TextBlock Text="&#xE071;" Foreground="DodgerBlue"/>
+                <TextBlock Text="&#xE0A6;" Foreground="White"/>
+            </Grid>
+        </StackPanel>
+        <ScrollViewer>
+            <ItemsControl x:Name="ic">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <goop:IconGlyphTextBlock IconGlyph="{Binding}" FontSize="30" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
