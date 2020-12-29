@@ -14,9 +14,9 @@
 			DP.OverrideMetadata(ItemsSourceProperty, new FrameworkPropertyMetadata(null, DP.DownCast<IEnumerable>(CoerceItemsSource)));
 		}
 
-		public Type EnumType
+		public Type? EnumType
 		{
-			get => (Type)this.GetValue(EnumTypeProperty);
+			get => (Type?)this.GetValue(EnumTypeProperty);
 			set => this.SetValue(EnumTypeProperty, value);
 		}
 		public static readonly DependencyProperty EnumTypeProperty = DP.Register(_ => _.EnumType, OnEnumTypeChanged, CoerceEnumType);
@@ -26,7 +26,7 @@
 			self.CoerceValue(ItemsSourceProperty);
 		}
 
-		private static object? CoerceEnumType(EnumComboBox self, Type baseValue)
+		private static Type? CoerceEnumType(EnumComboBox self, Type? baseValue)
 		{
 			return baseValue ?? self.SelectedValue?.GetType();
 		}
@@ -36,11 +36,11 @@
 			self.CoerceValue(EnumTypeProperty);
 		}
 
-		private static object? CoerceItemsSource(EnumComboBox self, IEnumerable? baseValue)
+		private static IEnumerable? CoerceItemsSource(EnumComboBox self, IEnumerable? baseValue)
 		{
 			if (baseValue == null)
 			{
-				Type type = self.EnumType;
+				Type? type = self.EnumType;
 				if (type?.IsEnum == true)
 				{
 					return type.GetEnumValues();
