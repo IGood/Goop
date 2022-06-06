@@ -13,20 +13,14 @@
 	using Cmd = RoutedCommandUtilities<GridViewHelper>;
 	using SorterCollection = System.Collections.Generic.List<System.Tuple<System.Collections.IComparer, int>>;
 
-	public sealed class GridViewHelper
+	public sealed partial class GridViewHelper
 	{
-		private static readonly AttachedPropertyUtilities AP = new AttachedPropertyUtilities(typeof(GridViewHelper));
-
 		public static readonly RoutedUICommand HideColumn = Cmd.CreateUI("Hi_de Column", nameof(HideColumn));
 		public static readonly RoutedUICommand SelectColumns = Cmd.CreateUI("_Select Columns", nameof(SelectColumns));
 
-		public static readonly DependencyProperty AllowHidingProperty = AP.For<GridViewColumn>().Register(GetAllowHiding, SetAllowHiding);
-		public static bool GetAllowHiding(GridViewColumn column) => (bool)column.GetValue(AllowHidingProperty);
-		public static void SetAllowHiding(GridViewColumn column, bool value) => column.SetValue(AllowHidingProperty, value);
+		public static readonly DependencyProperty AllowHidingProperty = GenAttached<GridViewColumn>.AllowHiding<bool>();
 
-		private static readonly DependencyPropertyKey HiddenColumnsPropertyKey = AP.For<GridView>().RegisterReadOnly(GetHiddenColumns, SetHiddenColumns);
-		private static List<GridViewColumn>? GetHiddenColumns(GridView gridView) => (List<GridViewColumn>?)gridView.GetValue(HiddenColumnsPropertyKey.DependencyProperty);
-		private static void SetHiddenColumns(GridView gridView, List<GridViewColumn>? value) => gridView.SetValue(HiddenColumnsPropertyKey, value);
+		private static readonly DependencyPropertyKey HiddenColumnsPropertyKey = GenAttached<GridView>.HiddenColumns<List<GridViewColumn>?>();
 
 		private static bool CheckRequirements([NotNullWhen(true)] ListView? listView, [NotNullWhen(true)] GridViewColumnHeader? header, [NotNullWhen(true)] out GridView? gridView)
 		{
@@ -44,7 +38,7 @@
 				return;
 			}
 
-			gridView.Columns.Remove(header.Column);
+			gridView!.Columns.Remove(header!.Column);
 
 			var hiddenColumns = GetHiddenColumns(gridView);
 			if (hiddenColumns == null)
@@ -122,15 +116,11 @@
 			}
 		}
 
-		public static readonly DependencyProperty SortComparerProperty = AP.For<GridViewColumn>().Register(GetSortComparer, SetSortComparer);
-		public static IComparer? GetSortComparer(GridViewColumn column) => (IComparer)column.GetValue(SortComparerProperty);
-		public static void SetSortComparer(GridViewColumn column, IComparer? value) => column.SetValue(SortComparerProperty, value);
+		public static readonly DependencyProperty SortComparerProperty = GenAttached<GridViewColumn>.SortComparer<IComparer?>();
 
-		private static readonly DependencyPropertyKey ColumnSortersPropertyKey = AP.For<GridView>().RegisterReadOnly(GetColumnSorters, SetColumnSorters);
-		private static SorterCollection? GetColumnSorters(GridView gridView) => (SorterCollection?)gridView.GetValue(ColumnSortersPropertyKey.DependencyProperty);
-		private static void SetColumnSorters(GridView gridView, SorterCollection? value) => gridView.SetValue(ColumnSortersPropertyKey, value);
+		private static readonly DependencyPropertyKey ColumnSortersPropertyKey = GenAttached<GridView>.ColumnSorters<SorterCollection?>();
 
-		public static void ColumnHeader_OnMouseLeftButtonDown(GridViewColumnHeader header)
+		public static void ColumnHeader_OnMouseLeftButtonDown(GridViewColumnHeader? header)
 		{
 			if (header?.Column == null)
 			{
@@ -166,7 +156,7 @@
 
 			sorters.Insert(0, sorter);
 
-			listCollectionView.CustomSort = new MultiSorter(sorters);
+			listCollectionView!.CustomSort = new MultiSorter(sorters);
 		}
 
 		private class MultiSorter : IComparer

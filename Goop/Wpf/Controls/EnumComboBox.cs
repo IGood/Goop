@@ -6,7 +6,7 @@
 	using System.Windows.Controls;
 	using DP = DependencyPropertyUtilities<EnumComboBox>;
 
-	public class EnumComboBox : ComboBox
+	public partial class EnumComboBox : ComboBox
 	{
 		static EnumComboBox ()
 		{
@@ -14,12 +14,7 @@
 			DP.OverrideMetadata(ItemsSourceProperty, new FrameworkPropertyMetadata(null, DP.DownCast<IEnumerable?>(CoerceItemsSource)));
 		}
 
-		public Type? EnumType
-		{
-			get => (Type?)this.GetValue(EnumTypeProperty);
-			set => this.SetValue(EnumTypeProperty, value);
-		}
-		public static readonly DependencyProperty EnumTypeProperty = DP.Register(_ => _.EnumType, OnEnumTypeChanged, CoerceEnumType);
+		public static readonly DependencyProperty EnumTypeProperty = Gen.EnumType<Type?>();
 
 		private static void OnEnumTypeChanged (EnumComboBox self, DependencyPropertyChangedEventArgs e)
 		{

@@ -6,7 +6,6 @@
 	using System.Text;
 	using System.Windows;
 	using System.Windows.Controls;
-	using DP = DependencyPropertyUtilities<SelectColumnsPopup>;
 
 	/// <summary>
 	/// Interaction logic for SelectColumnsPopup.xaml
@@ -21,13 +20,7 @@
 			this.InitializeComponent();
 		}
 
-		private static readonly DependencyPropertyKey ColumnsPropertyKey = DP.RegisterReadOnly(_ => _.Columns);
-		public static readonly DependencyProperty ColumnsProperty = ColumnsPropertyKey.DependencyProperty;
-		public IEnumerable<ColumnItem> Columns
-		{
-			get { return (IEnumerable<ColumnItem>)this.GetValue(ColumnsProperty); }
-			private set { this.SetValue(ColumnsPropertyKey, value); }
-		}
+		private static readonly DependencyPropertyKey ColumnsPropertyKey = Gen.Columns(Enumerable.Empty<ColumnItem>());
 
 		public void SetColumns(IEnumerable<GridViewColumn>? visible, IEnumerable<GridViewColumn>? hidden)
 		{

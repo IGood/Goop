@@ -102,12 +102,12 @@
 			this.collection.PropertyChanged -= this.HandlePropertyChanged;
 		}
 
-		private void HandleCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void HandleCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
 		{
 			this.CollectionChanged?.Invoke(this, e);
 		}
 
-		private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
+		private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			this.PropertyChanged?.Invoke(this, e);
 		}
