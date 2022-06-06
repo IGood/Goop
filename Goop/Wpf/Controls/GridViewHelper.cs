@@ -38,7 +38,7 @@
 				return;
 			}
 
-			gridView.Columns.Remove(header.Column);
+			gridView!.Columns.Remove(header!.Column);
 
 			var hiddenColumns = GetHiddenColumns(gridView);
 			if (hiddenColumns == null)
@@ -120,7 +120,7 @@
 
 		private static readonly DependencyPropertyKey ColumnSortersPropertyKey = GenAttached<GridView>.ColumnSorters<SorterCollection?>();
 
-		public static void ColumnHeader_OnMouseLeftButtonDown(GridViewColumnHeader header)
+		public static void ColumnHeader_OnMouseLeftButtonDown(GridViewColumnHeader? header)
 		{
 			if (header?.Column == null)
 			{
@@ -156,7 +156,7 @@
 
 			sorters.Insert(0, sorter);
 
-			listCollectionView.CustomSort = new MultiSorter(sorters);
+			listCollectionView!.CustomSort = new MultiSorter(sorters);
 		}
 
 		private class MultiSorter : IComparer

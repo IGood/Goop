@@ -9,7 +9,7 @@ namespace GoopBenchmark
 		static void Main(string[] args)
 		{
 			//*
-			Benchmark<EnumParsing>();
+			Benchmark<StringConcat>();
 			//Benchmark<StringBuilderFormatting>();
 			/*/
 			var x = new EnumParsing();
@@ -29,8 +29,8 @@ namespace GoopBenchmark
 			string @out = new string('\t', Indent) + message;
 
 			/*
-		Console.WriteLine(@out);
-		//*/
+			Console.WriteLine(@out);
+			//*/
 
 			return @out;
 		}
